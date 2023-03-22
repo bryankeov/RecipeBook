@@ -1,28 +1,26 @@
 import db from "../firebase";
-import { addDoc, collection } from "firebase/firestore";
+import { collection, query, getDocs } from "firebase/firestore";
+import React, { useState, useEffect } from "react";
 
-export default function Recipes(onNewRecipe) {
-  const submitRecipe = async (e) => {
-    e.preventDefault();
+export default function Recipes() {
+  const [recipes, setRecipes] = useState([]);
 
-    const payload = {
-      title: "Katsu Curry",
-      ingredients: [],
-      steps: [],
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  const fetchPosts = () => {
+    const fetchData = async () => {
+      const q = query(collection(db, "recipes"));
+      const snapshot = await getDocs(q);
+      setRecipes(snapshot.docs.map((doc) => doc.data()));
     };
-
-    const docRef = await addDoc(collection(db, "posts"), payload);
-
-    onNewRecipe({
-      ...payload,
-      id: docRef.id,
-    });
+    fetchData();
   };
+
   return (
     <div className="recipes">
-      <button type="submit" onClick={submitRecipe}>
-        Click Me
-      </button>
+      <button type="submit">Click Me</button>
     </div>
   );
 }

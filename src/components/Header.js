@@ -11,6 +11,14 @@ export default function Header() {
         height={50}
       />
       <h1>Recipe Book</h1>
+      <div className="nav-container">
+        <button type="button" className="home-btn">
+          Home
+        </button>
+        <button type="button" className="new-recipe-btn">
+          Add New Recipe
+        </button>
+      </div>
     </div>
   );
 }
