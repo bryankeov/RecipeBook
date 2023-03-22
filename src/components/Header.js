@@ -1,4 +1,5 @@
 import Logo from "../images/Logo.png";
+import { Link } from "react-router-dom";
 import "./Header.css";
 
 export default function Header() {
@@ -10,14 +11,20 @@ export default function Header() {
         alt="Logo by Jason Aldean from vhv.rs"
         height={50}
       />
-      <h1>Recipe Book</h1>
-      <div className="nav-container">
-        <button type="button" className="home-btn">
-          Home
-        </button>
-        <button type="button" className="new-recipe-btn">
-          Add New Recipe
-        </button>
+      <h1>RECIPE BOOK</h1>
+      <div className="nav">
+        <ul>
+          <li>
+            <Link to="/" className="page-routing">
+              HOME
+            </Link>
+          </li>
+          <li>
+            <Link to="/AddRecipe" className="page-routing">
+              ADD RECIPE
+            </Link>
+          </li>
+        </ul>
       </div>
     </div>
   );

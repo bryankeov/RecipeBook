@@ -1,0 +1,4 @@
+.form, .form-header, .form-ingreds, .form-steps {
+  display: flex;
+  flex-direction: column;
+}

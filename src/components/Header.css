@@ -2,5 +2,26 @@
   border-bottom: 2px solid black;
   background-color: lightgrey;
   text-align: center;
+}
 
+ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+li {
+  list-style-type: none;
+  cursor: pointer;
+}
+
+.page-routing {
+  text-decoration: none;
+  color: black;
+  font-weight: bolder;
+}
+
+.page-routing:hover {
+  color: red;
+  transition: 1s;
 }
