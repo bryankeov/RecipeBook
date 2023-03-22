@@ -1,9 +1,12 @@
+import Header from "./components/Header.js";
+import Recipes from "./components/Recipes.js";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <p>Hello</p>
+      <Header />
+      <Recipes />
     </div>
   );
 }
