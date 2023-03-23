@@ -1,19 +1,59 @@
 import React, { useState } from "react";
 import db from "../firebase";
 import { addDoc, collection } from "firebase/firestore";
+import { v4 as uuidv4 } from "uuid";
 import "./Form.css";
 
 export default function Form(onNewRecipe) {
-  const [ingredients, setIngredients] = useState([]);
-  const [steps, setSteps] = useState([]);
+  const [name, setName] = useState();
+  const [image, setImage] = useState();
+  const [ingredients, setIngredients] = useState(["", ""]);
+  const [steps, setSteps] = useState(["", ""]);
+
+  function uniqueID(value) {
+    uuidv4(value);
+  }
+
+  const handleIngredChange = (index, value) => {
+    const updateIngreds = [...ingredients];
+    updateIngreds[index] = value;
+    setIngredients(updateIngreds);
+  };
+
+  const onAddIngred = () => {
+    setIngredients([...ingredients, ""]);
+  };
+
+  const onMinusIngred = () => {
+    const updateIngreds = [...ingredients];
+    updateIngreds.splice(-1, 1);
+    setIngredients(updateIngreds);
+  };
+
+  const handleStepChange = (index, value) => {
+    const updateSteps = [...steps];
+    updateSteps[index] = value;
+    setSteps(updateSteps);
+  };
+
+  const onAddStep = () => {
+    setSteps([...steps, ""]);
+  };
+
+  const onMinusStep = () => {
+    const updateSteps = [...steps];
+    updateSteps.splice(-1, 1);
+    setSteps(updateSteps);
+  };
 
   const onSubmitRecipe = async (e) => {
     e.preventDefault();
 
     const payload = {
-      title: "Katsu Curry",
-      ingredients: [],
-      steps: [],
+      name: name,
+      image: image,
+      ingredients: ingredients,
+      steps: steps,
     };
 
     const docRef = await addDoc(collection(db, "posts"), payload);
@@ -23,30 +63,65 @@ export default function Form(onNewRecipe) {
       id: docRef.id,
     });
   };
+
   return (
     <form className="form" onSubmit={onSubmitRecipe}>
       <div className="form-header">
         <label className="label">
-          Title:
-          <input type="text"></input>
+          Name:
+          <input type="text" onChange={(e) => setName(e.target.value)} />
         </label>
         <label className="label">
           Image:
-          <input type="text"></input>
+          <input type="text" onChange={(e) => setImage(e.target.value)} />
         </label>
       </div>
       <div className="form-ingreds">
         <h3>Ingredients</h3>
-        <input className="ingred-input" type="text" />
-        <input className="ingred-input" type="text" />
-        <button type="button">+Ingredient</button>
+        {ingredients.map((item, index) => {
+          return (
+            <input
+              className="ingred-input"
+              type="text"
+              id={uniqueID()}
+              value={item}
+              onChange={(e) => handleIngredChange(index, e.target.value)}
+            />
+          );
+        })}
+        <button type="button" onClick={onAddIngred}>
+          +Ingredient
+        </button>
+        <button type="button" onClick={onMinusIngred}>
+          -Ingredient
+        </button>
       </div>
       <div className="form-steps">
         <h3>Steps</h3>
-        <input className="ingred-steps" type="text" />
-        <input className="ingred-steps" type="text" />
-        <button type="button">+Step</button>
+        {steps.map((item, index) => {
+          return (
+            <label key={uniqueID()}>
+              Step {index + 1}:
+              <input
+                className="step-input"
+                type="text"
+                value={item}
+                onChange={(e) => handleStepChange(index, e.target.value)}
+              />
+            </label>
+          );
+        })}
+        <button type="button" onClick={onAddStep}>
+          +Step
+        </button>
+        <button type="button" onClick={onMinusStep}>
+          -Step
+        </button>
       </div>
+      <br />
+      <button type="submit" onClick={onSubmitRecipe}>
+        Submit
+      </button>
     </form>
   );
 }
