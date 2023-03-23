@@ -4,7 +4,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 import "./Form.css";
 
-export default function Form(onNewRecipe) {
+export default function Form() {
   const [name, setName] = useState();
   const [image, setImage] = useState();
   const [ingredients, setIngredients] = useState(["", ""]);
@@ -56,12 +56,12 @@ export default function Form(onNewRecipe) {
       steps: steps,
     };
 
-    const docRef = await addDoc(collection(db, "posts"), payload);
+    addDoc(collection(db, "recipes"), payload);
 
-    onNewRecipe({
-      ...payload,
-      id: docRef.id,
-    });
+    // onNewRecipe({
+    //   ...payload,
+    //   id: docRef.id,
+    // });
   };
 
   return (
@@ -83,7 +83,7 @@ export default function Form(onNewRecipe) {
             <input
               className="ingred-input"
               type="text"
-              id={uniqueID()}
+              key={uniqueID()}
               value={item}
               onChange={(e) => handleIngredChange(index, e.target.value)}
             />
