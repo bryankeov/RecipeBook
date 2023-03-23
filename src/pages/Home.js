@@ -1,7 +1,11 @@
+import Recipes from "../components/Recipes.js";
+import Display from "../components/Display.js";
+
 export default function Home() {
   return (
     <div className="home">
-      <h1>Home page</h1>
+      <Display />
+      <Recipes />
     </div>
   );
 }
