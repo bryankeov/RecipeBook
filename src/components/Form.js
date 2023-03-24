@@ -97,11 +97,11 @@ export default function Form() {
         </button>
       </div>
       <div className="form-steps">
-        <h3>Steps</h3>
+        <h3>Instructions</h3>
         {steps.map((item, index) => {
           return (
             <label key={uniqueID()}>
-              Step {index + 1}:
+              {index + 1}:
               <input
                 className="step-input"
                 type="text"
@@ -119,9 +119,7 @@ export default function Form() {
         </button>
       </div>
       <br />
-      <button type="submit" onClick={onSubmitRecipe}>
-        Submit
-      </button>
+      <button type="submit">Submit</button>
     </form>
   );
 }
