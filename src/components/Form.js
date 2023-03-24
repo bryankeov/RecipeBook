@@ -8,7 +8,7 @@ export default function Form() {
   const [name, setName] = useState();
   const [image, setImage] = useState();
   const [ingredients, setIngredients] = useState(["", ""]);
-  const [steps, setSteps] = useState(["", ""]);
+  const [instructions, setInstructions] = useState(["", ""]);
 
   function uniqueID(value) {
     uuidv4(value);
@@ -30,20 +30,20 @@ export default function Form() {
     setIngredients(updateIngreds);
   };
 
-  const handleStepChange = (index, value) => {
-    const updateSteps = [...steps];
-    updateSteps[index] = value;
-    setSteps(updateSteps);
+  const handleInstructChange = (index, value) => {
+    const updateInstructions = [...instructions];
+    updateInstructions[index] = value;
+    setInstructions(updateInstructions);
   };
 
-  const onAddStep = () => {
-    setSteps([...steps, ""]);
+  const onAddInstruct = () => {
+    setInstructions([...instructions, ""]);
   };
 
-  const onMinusStep = () => {
-    const updateSteps = [...steps];
-    updateSteps.splice(-1, 1);
-    setSteps(updateSteps);
+  const onMinusInstruct = () => {
+    const updateInstructions = [...instructions];
+    updateInstructions.splice(-1, 1);
+    setInstructions(updateInstructions);
   };
 
   const onSubmitRecipe = async (e) => {
@@ -53,7 +53,7 @@ export default function Form() {
       name: name,
       image: image,
       ingredients: ingredients,
-      steps: steps,
+      instructions: instructions,
     };
 
     addDoc(collection(db, "recipes"), payload);
@@ -96,25 +96,25 @@ export default function Form() {
           -Ingredient
         </button>
       </div>
-      <div className="form-steps">
+      <div className="form-instructions">
         <h3>Instructions</h3>
-        {steps.map((item, index) => {
+        {instructions.map((item, index) => {
           return (
             <label key={uniqueID()}>
               {index + 1}:
               <input
-                className="step-input"
+                className="instruction-input"
                 type="text"
                 value={item}
-                onChange={(e) => handleStepChange(index, e.target.value)}
+                onChange={(e) => handleInstructChange(index, e.target.value)}
               />
             </label>
           );
         })}
-        <button type="button" onClick={onAddStep}>
+        <button type="button" onClick={onAddInstruct}>
           +Step
         </button>
-        <button type="button" onClick={onMinusStep}>
+        <button type="button" onClick={onMinusInstruct}>
           -Step
         </button>
       </div>

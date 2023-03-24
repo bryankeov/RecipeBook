@@ -35,11 +35,11 @@ export default function Recipes() {
             ))}
           </ul>
           <br />
-          <div className="step-container">
-            <h4>Steps</h4>
-            {recipe.steps.map((step, index) => (
+          <div className="instruction-container">
+            <h4>Instructions</h4>
+            {recipe.instructions.map((instruction, index) => (
               <div key={uuidv4()}>
-                Step {index + 1}: {step}
+                {index + 1}: {instruction}
               </div>
             ))}
           </div>
