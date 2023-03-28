@@ -89,12 +89,14 @@ export default function Form() {
             />
           );
         })}
-        <button type="button" onClick={onAddIngred}>
-          +Ingredient
-        </button>
-        <button type="button" onClick={onMinusIngred}>
-          -Ingredient
-        </button>
+        <div className="btn-container">
+          <button type="button" className="update-btn" onClick={onAddIngred}>
+            +
+          </button>
+          <button type="button" className="update-btn" onClick={onMinusIngred}>
+            -
+          </button>
+        </div>
       </div>
       <div className="form-instructions">
         <h3>Instructions</h3>
@@ -111,15 +113,23 @@ export default function Form() {
             </label>
           );
         })}
-        <button type="button" onClick={onAddInstruct}>
-          +Step
-        </button>
-        <button type="button" onClick={onMinusInstruct}>
-          -Step
-        </button>
+        <div className="btn-container">
+          <button type="button" className="update-btn" onClick={onAddInstruct}>
+            +
+          </button>
+          <button
+            type="button"
+            className="update-btn"
+            onClick={onMinusInstruct}
+          >
+            -
+          </button>
+        </div>
       </div>
       <br />
-      <button type="submit">Submit</button>
+      <button type="submit" className="submit-btn">
+        Submit
+      </button>
     </form>
   );
 }

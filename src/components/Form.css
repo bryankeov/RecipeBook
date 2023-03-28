@@ -1,4 +1,43 @@
-.form, .form-header, .form-ingreds, .form-steps {
+.form, .form-header, .form-ingreds, .form-instructions {
   display: flex;
   flex-direction: column;
+  margin: 20px;
+  width: 80%;
+}
+
+h2 {
+  text-align: center;
+}
+
+input {
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 5px;
+
+}
+
+.form-ingreds {
+  width: 300px;
+}
+
+.ingred-input {
+  
+}
+
+button {
+  border: 1px solid black;
+  border-radius: 5px;
+
+}
+
+.update-btn {
+  width: 25px;
+  height: 25px;
+  margin: 5px;
+  background-color: var(--main-color);
+}
+
+.submit-btn {
+  width: 100px;
+  height: 25px;
 }

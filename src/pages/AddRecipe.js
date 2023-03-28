@@ -3,7 +3,7 @@ import Form from "../components/Form.js";
 export default function AddRecipe() {
   return (
     <div className="add-recipe">
-      <h1>Add a new Recipe</h1>
+      <h2>Add a new Recipe</h2>
       <Form />
     </div>
   );
