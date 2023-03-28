@@ -1,8 +1,14 @@
 .form, .form-header, .form-ingreds, .form-instructions {
   display: flex;
   flex-direction: column;
-  margin: 20px;
-  width: 80%;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.form {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 h2 {
@@ -13,15 +19,15 @@ input {
   border: 1px solid black;
   border-radius: 5px;
   margin: 5px;
+  width: 400px;
 
 }
 
 .form-ingreds {
-  width: 300px;
 }
 
 .ingred-input {
-  
+
 }
 
 button {

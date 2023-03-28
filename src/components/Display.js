@@ -1,6 +1,7 @@
 import db from "../firebase";
 import { collection, query, getDocs } from "firebase/firestore";
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Display.css";
 
 export default function Display() {
@@ -24,10 +25,10 @@ export default function Display() {
   return (
     <div className="display-container">
       {recipes.map((recipe) => (
-        <div className="card-container" key={recipe.id}>
+        <Link to="/ViewRecipe" className="card-container" key={recipe.id}>
           <img className="card-image" src={recipe.image} alt={recipe.name} />
           <h4>{recipe.name}</h4>
-        </div>
+        </Link>
       ))}
     </div>
   );

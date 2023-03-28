@@ -4,16 +4,16 @@ import { collection, query, getDocs } from "firebase/firestore";
 import React, { useState, useEffect } from "react";
 import "./Recipes.css";
 
-export default function Recipes() {
+export default function Recipes(value) {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
     fetchRecipes();
   }, []);
 
-  const fetchRecipes = () => {
+  const fetchRecipes = (value) => {
     const fetchData = async () => {
-      const q = query(collection(db, "recipes"));
+      const q = query(collection(db, "recipes", "MRHH1vnwpzONJZ00GaVo"));
       const snapshot = await getDocs(q);
       setRecipes(snapshot.docs.map((doc) => doc.data()));
     };

@@ -67,14 +67,16 @@ export default function Form() {
   return (
     <form className="form" onSubmit={onSubmitRecipe}>
       <div className="form-header">
-        <label className="label">
-          Name:
-          <input type="text" onChange={(e) => setName(e.target.value)} />
-        </label>
-        <label className="label">
-          Image:
-          <input type="text" onChange={(e) => setImage(e.target.value)} />
-        </label>
+        <input
+          type="text"
+          placeholder="Name"
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Image"
+          onChange={(e) => setImage(e.target.value)}
+        />
       </div>
       <div className="form-ingreds">
         <h3>Ingredients</h3>
@@ -83,6 +85,7 @@ export default function Form() {
             <input
               className="ingred-input"
               type="text"
+              placeholder={index + 1}
               key={uniqueID()}
               value={item}
               onChange={(e) => handleIngredChange(index, e.target.value)}
@@ -102,15 +105,14 @@ export default function Form() {
         <h3>Instructions</h3>
         {instructions.map((item, index) => {
           return (
-            <label key={uniqueID()}>
-              {index + 1}:
-              <input
-                className="instruction-input"
-                type="text"
-                value={item}
-                onChange={(e) => handleInstructChange(index, e.target.value)}
-              />
-            </label>
+            <input
+              key={uniqueID()}
+              className="instruction-input"
+              type="text"
+              placeholder={index + 1}
+              value={item}
+              onChange={(e) => handleInstructChange(index, e.target.value)}
+            />
           );
         })}
         <div className="btn-container">
