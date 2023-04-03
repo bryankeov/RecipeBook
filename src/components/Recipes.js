@@ -1,10 +1,10 @@
 import db from "../firebase";
 import { v4 as uuidv4 } from "uuid";
-import { collection, query, getDocs } from "firebase/firestore";
+import { doc, query, getDoc } from "firebase/firestore";
 import React, { useState, useEffect } from "react";
 import "./Recipes.css";
 
-export default function Recipes(value) {
+export default function Recipes() {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
@@ -13,38 +13,38 @@ export default function Recipes(value) {
 
   const fetchRecipes = (value) => {
     const fetchData = async () => {
-      const q = query(collection(db, "recipes", "MRHH1vnwpzONJZ00GaVo"));
-      const snapshot = await getDocs(q);
-      setRecipes(snapshot.docs.map((doc) => doc.data()));
+      try {
+        const q = query(doc(db, "recipes", "MRHH1vnwpzONJZ00GaVo"));
+        const snapshot = await getDoc(q);
+        setRecipes(snapshot.data());
+      } catch (error) {
+        console.error(error);
+      }
     };
     fetchData();
   };
-
+  console.log(recipes.instructions);
   return (
     <div className="recipe-container">
-      {recipes.map((recipe) => (
-        <div className="recipe" key={recipe.id}>
-          <h3>{recipe.name}</h3>
-          <img src={recipe.image} alt={recipe.name} />
-          <br />
-          <br />
-          <ul className="ingredient-container">
-            <h4>Ingredients</h4>
-            {recipe.ingredients.map((ingredient) => (
-              <li key={uuidv4()}>{ingredient}</li>
-            ))}
-          </ul>
-          <br />
-          <div className="instruction-container">
-            <h4>Instructions</h4>
-            {recipe.instructions.map((instruction, index) => (
-              <div key={uuidv4()}>
-                {index + 1}: {instruction}
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
+      <div className="recipe" key={recipes.id}>
+        <h3>{recipes.name}</h3>
+        <img src={recipes.image} alt={recipes.name} />
+        <br />
+        <br />
+        <h4>Ingredients</h4>
+        <ul className="ingredient-container">
+          {recipes.ingredients.map((ingredient) => (
+            <li key={uuidv4()}>{ingredient}</li>
+          ))}
+        </ul>
+        <br />
+        <h4>Instructions</h4>
+        <ol className="instruction-container">
+          {recipes.instructions.map((instruction) => (
+            <li key={uuidv4()}>{instruction}</li>
+          ))}
+        </ol>
+      </div>
     </div>
   );
 }
