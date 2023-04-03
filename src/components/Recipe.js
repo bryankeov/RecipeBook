@@ -2,19 +2,23 @@ import db from "../firebase";
 import { v4 as uuidv4 } from "uuid";
 import { doc, query, getDoc } from "firebase/firestore";
 import React, { useState, useEffect } from "react";
-import "./Recipes.css";
+import { useLocation } from "react-router-dom";
+import "./Recipe.css";
 
 export default function Recipes() {
   const [recipes, setRecipes] = useState([]);
 
+  const location = useLocation();
+  const value = location.state;
+
   useEffect(() => {
-    fetchRecipes();
+    fetchRecipe();
   }, []);
 
-  const fetchRecipes = (value) => {
+  const fetchRecipe = () => {
     const fetchData = async () => {
       try {
-        const q = query(doc(db, "recipes", "MRHH1vnwpzONJZ00GaVo"));
+        const q = query(doc(db, "recipes", value));
         const snapshot = await getDoc(q);
         setRecipes(snapshot.data());
       } catch (error) {
@@ -23,7 +27,7 @@ export default function Recipes() {
     };
     fetchData();
   };
-  console.log(recipes.instructions);
+
   return (
     <div className="recipe-container">
       <div className="recipe" key={recipes.id}>
@@ -33,16 +37,18 @@ export default function Recipes() {
         <br />
         <h4>Ingredients</h4>
         <ul className="ingredient-container">
-          {recipes.ingredients.map((ingredient) => (
-            <li key={uuidv4()}>{ingredient}</li>
-          ))}
+          {recipes.length &&
+            recipes.ingredients.map((ingredient) => (
+              <li key={uuidv4()}>{ingredient}</li>
+            ))}
         </ul>
         <br />
         <h4>Instructions</h4>
         <ol className="instruction-container">
-          {recipes.instructions.map((instruction) => (
-            <li key={uuidv4()}>{instruction}</li>
-          ))}
+          {recipes.length &&
+            recipes.instructions.map((instruction) => (
+              <li key={uuidv4()}>{instruction}</li>
+            ))}
         </ol>
       </div>
     </div>

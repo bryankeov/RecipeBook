@@ -17,15 +17,24 @@ export default function Display() {
       const snapshot = await getDocs(q);
       const data = snapshot.docs.map((doc) => doc.data());
       const recID = snapshot.docs.map((doc) => doc.id);
-      data[0].id = recID;
+
+      for (let i = 0; i < recID.length; i++) {
+        data[i].id = recID[i];
+      }
       setRecipes(data);
     };
     fetchData();
   };
+
   return (
     <div className="display-container">
       {recipes.map((recipe) => (
-        <Link to="/ViewRecipe" className="card-container" key={recipe.id}>
+        <Link
+          to="/ViewRecipe"
+          className="card-container"
+          key={recipe.id}
+          state={recipe.id}
+        >
           <img className="card-image" src={recipe.image} alt={recipe.name} />
           <h4>{recipe.name}</h4>
         </Link>

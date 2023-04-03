@@ -1,4 +1,4 @@
-import Recipe from "../components/Recipes.js";
+import Recipe from "../components/Recipe.js";
 
 export default function ViewRecipe() {
   return (
