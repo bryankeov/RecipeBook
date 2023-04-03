@@ -26,10 +26,6 @@ input {
 .form-ingreds {
 }
 
-.ingred-input {
-
-}
-
 button {
   border: 1px solid black;
   border-radius: 5px;
@@ -46,4 +42,13 @@ button {
 .submit-btn {
   width: 100px;
   height: 25px;
+}
+
+.submit-btn:hover {
+  border-color: red;
+  transition: 0.5s;
+}
+
+.submit-btn:active {
+  background-color: black;
 }

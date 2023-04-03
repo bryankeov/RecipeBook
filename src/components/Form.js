@@ -57,15 +57,10 @@ export default function Form() {
     };
 
     addDoc(collection(db, "recipes"), payload);
-
-    // onNewRecipe({
-    //   ...payload,
-    //   id: docRef.id,
-    // });
   };
 
   return (
-    <form className="form" onSubmit={onSubmitRecipe}>
+    <form className="form" id="form" onSubmit={onSubmitRecipe}>
       <div className="form-header">
         <input
           type="text"

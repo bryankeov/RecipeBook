@@ -33,8 +33,6 @@ export default function Recipes() {
       <div className="recipe" key={recipes.id}>
         <h3>{recipes.name}</h3>
         <img src={recipes.image} alt={recipes.name} />
-        <br />
-        <br />
         <h4>Ingredients</h4>
         <ul className="ingredient-container">
           {recipes.ingredients
