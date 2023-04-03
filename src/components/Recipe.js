@@ -37,18 +37,20 @@ export default function Recipes() {
         <br />
         <h4>Ingredients</h4>
         <ul className="ingredient-container">
-          {recipes.length &&
-            recipes.ingredients.map((ingredient) => (
-              <li key={uuidv4()}>{ingredient}</li>
-            ))}
+          {recipes.ingredients
+            ? recipes.ingredients.map((ingredient) => (
+                <li key={uuidv4()}>{ingredient}</li>
+              ))
+            : []}
         </ul>
         <br />
         <h4>Instructions</h4>
         <ol className="instruction-container">
-          {recipes.length &&
-            recipes.instructions.map((instruction) => (
-              <li key={uuidv4()}>{instruction}</li>
-            ))}
+          {recipes.instructions
+            ? recipes.instructions.map((instruction) => (
+                <li key={uuidv4()}>{instruction}</li>
+              ))
+            : []}
         </ol>
       </div>
     </div>

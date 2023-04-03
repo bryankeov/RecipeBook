@@ -6,3 +6,8 @@
 .ingredient-container li {
   list-style-type: circle;
 }
+
+img {
+  width: 200px;
+  height: auto;
+}
