@@ -23,32 +23,23 @@ input {
 
 }
 
-.form-ingreds {
+button {
+  border-radius: 5px;
+  background-color: var(--main-color);
 }
 
-button {
-  border: 1px solid black;
-  border-radius: 5px;
-
+button:hover {
+  border-color: var(--focus-color);
+  transition: 0.5s;
 }
 
 .update-btn {
   width: 25px;
   height: 25px;
   margin: 5px;
-  background-color: var(--main-color);
 }
 
 .submit-btn {
   width: 100px;
   height: 25px;
-}
-
-.submit-btn:hover {
-  border-color: red;
-  transition: 0.5s;
-}
-
-.submit-btn:active {
-  background-color: black;
 }

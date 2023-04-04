@@ -30,4 +30,6 @@
 h4 {
   width: 200px;
   text-align: center;
+  text-decoration: none;
+  color: black;
 }
